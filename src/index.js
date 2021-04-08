@@ -33,8 +33,7 @@ const observerOptions = {
 
 
 // A collection of RegEx expressions to test comments with.
-// If a comments tests true with any given expression, it will be removed
-
+// If a comments tests true with any given expression, it will be removed.
 let tests = [];
 
 chrome.storage.sync.get({
@@ -45,37 +44,6 @@ chrome.storage.sync.get({
         tests.push(new RegExp(`(${test})`, 'ig'));
     }
 });
-
-
-
-// const tests = [
-
-//     // No one:
-//     // Me: same
-//     /(no one:)/ig,
-//     /(noone:)/ig,
-//     /(nobody:)/ig,
-//     /(no body:)/ig,
-    
-//     // Like if you're watching this in 2020
-//     // Am i the only one to like this song?
-//     // Use me as a replay button
-//     // Be honest, u searched for this video
-//     // Anyone watching this right now?
-//     /(like if)/ig,        
-//     /(am i the only one)/ig,        
-//     /(use me as)/ig,        
-//     /(be honest)/ig,        
-//     /(admit it)/ig,        
-//     /(in 20\d{2})/g,
-//     /(anyone watching)/ig,
-//     /(single soul)/ig,
-    
-//     /(fun fact:)/ig,
-//     /(searched for it)/ig,
-//     /( old me)/ig,
-//     /(quarantine)/ig,
-// ]
 
 // Retrieve the text of a comment element
 function GetCommentObjectText(commentObject) {
