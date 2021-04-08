@@ -1,5 +1,5 @@
 // TODO: Implement debugging right in the extenstion options
-const debug = false;
+const debug = true;
 
 // A YouTube comment section is lazily loaded, including the container element for all comments.
 // So when we load a video, we set an interval that checks if that element has been rendered.
@@ -40,9 +40,11 @@ chrome.storage.sync.get({
     cachedTests: ''
   }, function(items) {
     let temp = items.cachedTests.split("\n");
+    debug && console.log(temp);
     for(let test of temp) {
         tests.push(new RegExp(`(${test})`, 'ig'));
     }
+    debug && console.log(tests);
 });
 
 // Retrieve the text of a comment element
