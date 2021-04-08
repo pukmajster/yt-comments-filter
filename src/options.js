@@ -1,7 +1,7 @@
 function save_options() {
     var tests = document.getElementById('tests').value;
     chrome.storage.sync.set({
-        cachedTests: tests,
+        tests,
     }, function() {
         var status = document.getElementById('status');
         status.textContent = 'Filters saved.';
@@ -11,9 +11,9 @@ function save_options() {
 
 function restore_options() {
     chrome.storage.sync.get({
-        cachedTests: ''
+        tests: ''
     }, function(items) {
-      document.getElementById('tests').value = items.cachedTests;
+      document.getElementById('tests').value = items.tests;
     });
   }
 
