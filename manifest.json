@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "YT Comment Filter",
+    "description": "A Chrome extension for filtering YouTube comments",
+    "version": "0.0.1",
+
+    "content_scripts": [
+        {
+            "matches": ["https://www.youtube.com/*"],
+            "js": [
+                "src/index.js"
+            ]
+        }
+    ],
+
+    "options_ui": {
+        "page": "src/options.html",
+        "open_in_tab": true
+    },
+
+    "permissions": [
+        "storage"
+     ]
+}

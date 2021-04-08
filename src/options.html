@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>YT Comments Filter</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script defer src="options.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --surface1: rgb(24, 24, 24);
+            --surface2: rgb(36, 36, 36);
+            --surface3: rgb(37, 37, 37);
+        }
+
+        html {
+            background-color: var(--surface1);
+            font-size: 24px;
+        }
+
+        html, body, button, textarea {
+            font-family: Roboto, sans-serif;
+        }
+
+        header {
+            color: red;
+            /* background-color: var(--surface2); */
+
+            margin-top: 2em;
+
+            font-size: 25px;
+        }
+
+        header div {
+            padding: 16px 25px;
+
+            max-width: calc(700px);
+            margin: 0 auto;
+        }
+
+        header p {
+            padding-top: 1em;
+            font-size: 18px;
+            color: rgb(236, 236, 236);
+        }
+
+        main {
+            padding-top: 5em;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 16px 25px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 256px;
+            resize: vertical;
+
+            padding: 14px;
+        }
+
+        .controls {
+            margin-top: 7px;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+        button {
+            font-size: 17px;
+            padding: 12px 32px;
+
+            border-radius: 0;
+            appearance: none;
+            background-color: var(--surface2);
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+            background-color: red;
+            color: white;
+        }
+
+        #status {
+            padding-top: 1em;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            YouTube Comments Filter
+
+            <p>
+                Every individual phrase you want to filter out should go in a new line. If you're a programmer, you can also write RegExp instead!
+            </p>
+        </div>
+
+       
+    </header>
+
+    <main>
+        <textarea id="tests" ></textarea>
+        
+        <div class="controls" >
+            <button id="save" >SAVE</button>
+        </div>
+
+        <p id="status" ></p>
+    </main>
+ </body>
+</html>
