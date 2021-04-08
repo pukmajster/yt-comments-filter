@@ -26,6 +26,7 @@
         html {
             background-color: var(--surface1);
             font-size: 24px;
+            min-width: 300px;
         }
 
         html, body, button, textarea {
@@ -34,14 +35,15 @@
 
         header {
             color: red;
-            /* background-color: var(--surface2); */
-
             margin-top: 2em;
-
             font-size: 25px;
         }
 
-        header div {
+        .title {
+            margin-bottom: 17px;
+        }
+
+        header > div {
             padding: 16px 25px;
 
             max-width: calc(700px);
@@ -49,13 +51,13 @@
         }
 
         header p {
-            padding-top: 1em;
+            padding-top: .5em;
             font-size: 18px;
             color: rgb(236, 236, 236);
         }
 
         main {
-            padding-top: 5em;
+            padding-top: 3em;
             max-width: 700px;
             margin: 0 auto;
             padding: 16px 25px;
@@ -70,15 +72,17 @@
         }
 
         .controls {
-            margin-top: 7px;
+            margin-top: 8px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
             flex-direction: row;
             gap: 5px;
         }
 
         button {
             font-size: 17px;
-            padding: 12px 32px;
+            padding: 10px 32px;
 
             border-radius: 0;
             appearance: none;
@@ -95,19 +99,49 @@
         }
 
         #status {
-            padding-top: 1em;
+            font-size: 15px;
         }
+
+        @media only screen and (max-width: 500px) {
+            header {
+                margin-top: 0;
+            }
+
+            header p {
+                padding: 0;
+                font-size: 14px;
+            }
+
+            main {
+                padding: 7px;
+            }
+
+            header > div {
+                padding: 8px;
+
+                max-width: calc(700px);
+                margin: 0 auto;
+            }
+
+            .title {
+                font-size: 17px;
+                margin-bottom: 7px;
+            }
+
+            button {
+                font-size: 17px;
+                padding: 8px 26px;
+            }
 
     </style>
 </head>
 <body>
     <header>
         <div>
-            YouTube Comments Filter
+            <div class="title" >YouTube Comments Filter</div>
 
-            <p>
-                Every individual phrase you want to filter out should go in a new line. <br /> If you're a programmer, you can also write RegExp!
-            </p>
+            <p>Every individual phrase you want to filter out should go in a new line.<br /> </p>
+            <p>If you're a programmer, you can also write RegExp!</p>
         </div>
 
        
@@ -118,9 +152,9 @@
         
         <div class="controls" >
             <button id="save" >SAVE</button>
-        </div>
 
-        <p id="status" ></p>
+            <p id="status" ></p>
+        </div>
     </main>
  </body>
 </html>

@@ -1,4 +1,4 @@
-// TODO: Implement debugging right in the extenstion properties
+// TODO: Implement debugging right in the extenstion options
 const debug = false;
 
 // A YouTube comment section is lazily loaded, including the container element for all comments.
@@ -99,6 +99,7 @@ function CreateObserver(target) {
 }
 
 // Set up an interval that waits for the root element to appear
+// TODO: Have this only run on pages with videos, not on any YouTube page
 function Init() {
 
     const interval = setInterval(() => {
