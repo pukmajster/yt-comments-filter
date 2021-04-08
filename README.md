@@ -7,3 +7,7 @@ This is a Google Chrome extenstion for filtering out certain YouTube comments ba
 3. Enable 'developer mode'
 4. Click "Load unpacked" and select the extracted yt-comments-filter folder
 5. Configure your filters by going into the extension options or by just clicking on the extension icon in the toolbar
+
+## Example:
+
+If you want to remove every comment that includes the word "potato", make a new line and simply just write potato.

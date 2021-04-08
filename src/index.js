@@ -58,7 +58,7 @@ function CheckCommentObject(commentObject) {
     let nMatches = 0;
 
     tests.forEach(test => {
-        if (commentText.match(test)) nMatches++;
+        if (commentText.toLowerCase().match(test)) nMatches++;
     });
 
     // If atleast one test matches, we send the comment object TO THE RANCH
