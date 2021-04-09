@@ -1,6 +1,7 @@
 function save_options() {
   var tests = document.getElementById('tests').value.trim();
-  chrome.storage.sync.set({ tests }, function() {
+  let markRemoved = document.getElementById('markRemoved').checked;
+  chrome.storage.sync.set({ tests, markRemoved }, function() {
     var status = document.getElementById('save');
     status.textContent = 'CHANGES SAVED';
     setTimeout(() => status.textContent = 'SAVE CHANGES', 1500);
@@ -8,8 +9,9 @@ function save_options() {
 }
 
 function restore_options() {
-  chrome.storage.sync.get(['tests', 'totalRemoved', 'totalMatches'], function(items) {
+  chrome.storage.sync.get(['tests', 'markRemoved', 'totalRemoved', 'totalMatches'], function(items) {
     document.getElementById('tests').value = items.tests ?? '';
+    document.getElementById('markRemoved').checked = items.markRemoved ?? false;
     document.getElementById('TOTAL_REMOVED').innerHTML = items.totalRemoved ?? '0';
     document.getElementById('TOTAL_MATCHED').innerHTML = items.totalMatches ?? '0';
   });

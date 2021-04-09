@@ -1,4 +1,4 @@
-// TODO: Implement debugging right in the extenstion options
+// TODO: Implement debugging right in the extenstion options?
 const debug = {
   enabled: true,
   logMutations: true,
@@ -36,13 +36,14 @@ const observerOptions = {
 // If a comments tests true with any given expression, it will be removed.
 let userOptions = {
   tests: [],
-  markRemovedInstead: true,
+  markRemoved: false,
 };
 
 function LoadOptions() {
   chrome.storage.sync.get(
     {
       tests: "",
+      markRemoved: false
     },
     function (items) {
       DebugLog("Loading user options...");
@@ -54,6 +55,9 @@ function LoadOptions() {
         userOptions.tests.push(new RegExp(`(${test})`, "ig"));
       }
       DebugLog(userOptions.tests);
+
+      // set markRemoved
+      userOptions.markRemoved = items.markRemoved ?? false;
     }
   );
 }
@@ -88,7 +92,7 @@ function CheckCommentObject(commentObject) {
 function RemoveCommentObject(commentObject, nMatches, commentText) {
   if (commentObject) {
 
-    if(userOptions.markRemovedInstead) {
+    if(userOptions.markRemoved) {
       commentObject.innerHTML = removedCommentMarker;
     } else commentObject.remove();
     
@@ -127,6 +131,7 @@ function HandleMutation(mutations) {
 //
 // Set up an interval that waits for the root element to appear
 // TODO: Have this only run on pages with videos, not on any YouTube page
+// TODO: Fix some bad comments slipping through at the start
 let observer = null;
 let currentVideoTitle = null;
 
@@ -159,8 +164,6 @@ function InitMainObserver() {
   });
 }
 
-
-
 // We observe the document's title for when the user moves onto another video
 function main() {
   let target = document.querySelector("title");
@@ -182,6 +185,8 @@ function main() {
   });
 }
 
+InitMainObserver();
+currentVideoTitle = document.querySelector("title").innerText;
 main();
 
 

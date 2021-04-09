@@ -154,6 +154,14 @@
             padding: 8px 26px;
             text-transform: capitalize;
         }
+
+        .check {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 0;
+        }
+
     </style>
 </head>
 <body>
@@ -162,7 +170,7 @@
         
         <div>
             <div>Made by Žan Pukmajster</div>
-            <div style="margin-top: 3px"  >
+            <div>
                 <a href="https://github.com/pukmajster/yt-comments-filter" target="_blank" >github</a>
             </div>
         </div>
@@ -174,6 +182,11 @@
         <p>If you're a programmer, you can also write RegExp!</p>
 
         <textarea id="tests" ></textarea>
+
+        <div class="check" >
+            <input id="markRemoved" type="checkbox" >
+            <label for="markRemoved">Mark removed comments</label>
+        </div>
         
         <div class="controls" >
             <button id="save" >SAVE CHANGES</button>
