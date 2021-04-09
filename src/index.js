@@ -9,8 +9,8 @@ const browserAPI = (function () {
 
 // TODO: Implement debugging right in the extenstion options?
 const debug = {
-  enabled: true,
-  logMutations: true,
+  enabled: false,
+  logMutations: false,
 };
 
 const removedCommentMarker = `<p style="font-size: 15px; color: red" >Removed comment<p>`

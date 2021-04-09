@@ -1,6 +1,7 @@
 # YouTube Comments Filter
 This is a browser extenstion for filtering out certain YouTube comments based on user preferences.
-Current only supported for Google Chrome, but I'll try to make it work for other browers like Firefox.
+
+Tested on Google Chrome, Microsoft Edge and Mozilla Firefox.
 
 ![Preview](/media/repo_preview.png)
 
