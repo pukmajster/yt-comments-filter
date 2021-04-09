@@ -1,7 +1,10 @@
 // Cross-browser solution for interacting with the various browser APIs
 // https://www.smashingmagazine.com/2017/04/browser-extension-edge-chrome-firefox-opera-brave-vivaldi/
-window.browserAPI = (function () {
-  return window.msBrowser || window.browser || window.chrome;
+const browserAPI = (function () {
+  if(chrome) return chrome;
+  if(msBrowser) return msBrowser;
+  if(browser) return browser;
+  return null;
 })();
 
 // TODO: Implement debugging right in the extenstion options?
@@ -40,32 +43,29 @@ const observerOptions = {
 
 // A collection of RegEx expressions to test comments with.
 // If a comments tests true with any given expression, it will be removed.
+
+// TODO: Instead of getting rid of the comment, simply hide it and allow the user
+// To view the comment if they wish to
 let userOptions = {
   tests: [],
   markRemoved: false,
 };
 
 function LoadOptions() {
-  window.browserAPI.storage.sync.get(
-    {
-      tests: "",
-      markRemoved: false
-    },
-    function (items) {
-      DebugLog("Loading user options...");
+  browserAPI.storage.sync.get(['tests', 'markRemoved'], (items) => {
+    DebugLog("Loading user options...");
 
-      // Load tests
-      let temp = items.tests.split("\n");
-      userOptions.tests = [];
-      for (let test of temp) {
-        userOptions.tests.push(new RegExp(`(${test})`, "ig"));
-      }
-      DebugLog(userOptions.tests);
-
-      // set markRemoved
-      userOptions.markRemoved = items.markRemoved ?? false;
+    // Load tests
+    let temp = (items.tests ?? '').split("\n");
+    userOptions.tests = [];
+    for (let test of temp) {
+      userOptions.tests.push(new RegExp(`(${test})`, "ig"));
     }
-  );
+    DebugLog(userOptions.tests);
+
+    // set markRemoved
+    userOptions.markRemoved = items.markRemoved ?? false;
+  })
 }
 function DebugLog(value) {
   return debug.enabled && console.log(`[YT-Comments-Filter][Debug]: ${value}`);
@@ -105,14 +105,14 @@ function RemoveCommentObject(commentObject, nMatches, commentText) {
     DebugLog(`Removed comment with ${nMatches} match(es): ${commentText}`);
 
     // Update user records
-    window.browserAPI.storage.sync.get(['totalRemoved', 'totalMatches'], function(items) {
+    browserAPI.storage.sync.get(['totalRemoved', 'totalMatches'], function(items) {
 
       let newStats = {
         totalRemoved: (items.totalRemoved ?? 0) + 1,
         totalMatches: (items.totalMatches ?? 0) + nMatches,
       }
 
-      window.browserAPI.storage.sync.set(newStats);
+      browserAPI.storage.sync.set(newStats);
     });
   }
 }
@@ -142,6 +142,7 @@ let currentVideoTitle = null;
 function InitMainObserver() {
   DebugLog(`Initializing; looking for comment section`);
   LoadOptions();
+  console.log('load options?');
 
   // Disconnect any previous observer
   if (observer) {
@@ -189,11 +190,9 @@ function main() {
   });
 }
 
-InitMainObserver();
-currentVideoTitle = document.querySelector("title").innerText;
+// InitMainObserver();
+// currentVideoTitle = document.querySelector("title").innerText;
 main();
-
-
 
 // https://stackoverflow.com/questions/38881301/observe-mutations-on-a-target-node-that-doesnt-exist-yet/38882022
 function waitForAddedNode(params) {

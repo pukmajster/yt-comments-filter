@@ -2,7 +2,8 @@
     "manifest_version": 2,
     "name": "YT Comments Filter",
     "description": "An extension for filtering YouTube comments",
-    "version": "0.2.0",
+    "version": "0.3.0",
+    "author": "Žan Pukmajster",
 
     "icons": {
         "16": "media/icon-16.png",
@@ -31,5 +32,12 @@
 
     "permissions": [
         "storage"
-    ]
+    ],
+
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "{2bd9aae6-e027-4092-acf6-c4a9bef97247}"
+        }
+    }
+      
 }
