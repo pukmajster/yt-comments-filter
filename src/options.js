@@ -1,7 +1,13 @@
+// Cross-browser solution for interacting with the various browser APIs
+// https://www.smashingmagazine.com/2017/04/browser-extension-edge-chrome-firefox-opera-brave-vivaldi/
+window.browserAPI = (function () {
+  return window.msBrowser || window.browser || window.chrome;
+})();
+
 function save_options() {
   var tests = document.getElementById('tests').value.trim();
   let markRemoved = document.getElementById('markRemoved').checked;
-  chrome.storage.sync.set({ tests, markRemoved }, function() {
+  window.browserAPI.storage.sync.set({ tests, markRemoved }, function() {
     var status = document.getElementById('save');
     status.textContent = 'CHANGES SAVED';
     setTimeout(() => status.textContent = 'SAVE CHANGES', 1500);
@@ -9,7 +15,7 @@ function save_options() {
 }
 
 function restore_options() {
-  chrome.storage.sync.get(['tests', 'markRemoved', 'totalRemoved', 'totalMatches'], function(items) {
+  window.browserAPI.storage.sync.get(['tests', 'markRemoved', 'totalRemoved', 'totalMatches'], function(items) {
     document.getElementById('tests').value = items.tests ?? '';
     document.getElementById('markRemoved').checked = items.markRemoved ?? false;
     document.getElementById('TOTAL_REMOVED').innerHTML = items.totalRemoved ?? '0';

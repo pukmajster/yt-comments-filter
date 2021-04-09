@@ -1,3 +1,9 @@
+// Cross-browser solution for interacting with the various browser APIs
+// https://www.smashingmagazine.com/2017/04/browser-extension-edge-chrome-firefox-opera-brave-vivaldi/
+window.browserAPI = (function () {
+  return window.msBrowser || window.browser || window.chrome;
+})();
+
 // TODO: Implement debugging right in the extenstion options?
 const debug = {
   enabled: true,
@@ -40,7 +46,7 @@ let userOptions = {
 };
 
 function LoadOptions() {
-  chrome.storage.sync.get(
+  window.browserAPI.storage.sync.get(
     {
       tests: "",
       markRemoved: false
@@ -99,16 +105,14 @@ function RemoveCommentObject(commentObject, nMatches, commentText) {
     DebugLog(`Removed comment with ${nMatches} match(es): ${commentText}`);
 
     // Update user records
-    chrome.storage.sync.get(['totalRemoved', 'totalMatches'], function(items) {
+    window.browserAPI.storage.sync.get(['totalRemoved', 'totalMatches'], function(items) {
 
       let newStats = {
         totalRemoved: (items.totalRemoved ?? 0) + 1,
         totalMatches: (items.totalMatches ?? 0) + nMatches,
       }
 
-      debug.enabled && console.log('New stats', newStats)
-
-      chrome.storage.sync.set(newStats);
+      window.browserAPI.storage.sync.set(newStats);
     });
   }
 }
