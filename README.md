@@ -1,6 +1,8 @@
 # YouTube Comments Filter
 This is a Google Chrome extenstion for filtering out certain YouTube comments based on user preferences
 
+![Preview](/media/repo_preview.png)
+
 # How to install
 1. Download the .zip file (using the big green button) and extract the contents somewhere where the folder won't bother you
 2. Go to the chrome extensions page (url: chrome://extensions/)
