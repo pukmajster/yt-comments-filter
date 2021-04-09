@@ -13,5 +13,8 @@ Current only supported for Google Chrome, but I'll try to make it work for other
 4. Click "Load unpacked" and select the extracted yt-comments-filter folder
 5. Configure your filters by going into the extension options or by just clicking on the extension icon in the toolbar
 
+## Firefox
+Install the addon on the official [Firefox Addons page](https://addons.mozilla.org/en-GB/firefox/addon/yt-comments-filter/) (NOTE: Addon is currently awaiting approval). 
+
 # Example:
 If you want to remove every comment that includes the word "potato", make a new line and simply just write potato.
