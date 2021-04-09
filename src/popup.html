@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>YT Comments Filter</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script defer src="options.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --surface1: rgb(0, 0, 0);
+            --surface2: rgb(22, 22, 22);
+            --surface3: rgb(34, 34, 34);
+        }
+
+        html {
+            background-color: var(--surface1);
+            font-size: 14px;
+            min-width: 300px;
+        }
+
+        html, body, button, textarea {
+            font-family: Roboto, sans-serif;
+        }
+
+        body {
+            padding: 10px;
+        }
+
+        header {
+            padding: 5px;
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        header div {
+            text-align: right;
+            padding-top: 4px;
+        }
+
+        a {
+            font-size: 13px;
+            color: red;
+
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        main p {
+            padding-top: .5em;
+            color: rgb(236, 236, 236);
+        }
+
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 36px 25px;
+            font-size: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 256px;
+            resize: none;
+
+            outline: none !important;
+            border-radius: 4px;
+            border: none;
+
+            background-color: var(--surface2);
+
+            padding: 5px;
+            margin-top: 12px;
+
+            font-size: 15px;
+        }
+
+        textarea:hover {
+            background-color: var(--surface3);
+        }
+
+        textarea:focus {
+            background-color: var(--surface3);
+        }
+
+        .controls {
+            margin-top: 8px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+        button {
+            font-size: 15px !important;
+            padding: 10px 32px;
+
+            border-radius: 3px;
+            appearance: none;
+            background-color: var(--surface2);
+            border: none;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: red;
+            color: white;
+        }
+
+        #status {
+            font-size: 15px;
+        }
+
+        .fun-fact {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        header {
+            margin-top: 0;
+        }
+
+        main {
+            padding: 7px;
+        }
+
+        .title {
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        button {
+            font-size: 17px;
+            padding: 8px 26px;
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="../media/icon-128.png" width="64" alt="Icon" />
+        
+        <div>
+            <div>Made by Žan Pukmajster</div>
+            <div style="margin-top: 3px"  >
+                <a href="https://github.com/pukmajster/yt-comments-filter" target="_blank" >github</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <p>Every individual phrase you want to filter out should go in a new line and should be lower case.<br /> </p>
+        <p>If you're a programmer, you can also write RegExp!</p>
+
+        <textarea id="tests" ></textarea>
+        
+        <div class="controls" >
+            <button id="save" >SAVE CHANGES</button>
+
+            <p id="status" ></p>
+        </div>
+        
+        <div class="fun-fact" >
+            <p>Total comments removed: </p>
+            <p id="TOTAL_REMOVED" >0</p>
+        </div>
+
+        <div class="fun-fact" >
+            <p>Total matches: </p>
+            <p id="TOTAL_MATCHED" >0</p>
+        </div>
+    </main>
+ </body>
+</html>

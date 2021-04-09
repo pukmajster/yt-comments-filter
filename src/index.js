@@ -1,7 +1,7 @@
 // TODO: Implement debugging right in the extenstion options
 const debug = {
   enabled: true,
-  logMutations: true
+  logMutations: true,
 };
 
 const removedCommentMarker = `<p style="font-size: 15px; color: red" >Removed comment<p>`
@@ -93,6 +93,19 @@ function RemoveCommentObject(commentObject, nMatches, commentText) {
     } else commentObject.remove();
     
     DebugLog(`Removed comment with ${nMatches} match(es): ${commentText}`);
+
+    // Update user records
+    chrome.storage.sync.get(['totalRemoved', 'totalMatches'], function(items) {
+
+      let newStats = {
+        totalRemoved: (items.totalRemoved ?? 0) + 1,
+        totalMatches: (items.totalMatches ?? 0) + nMatches,
+      }
+
+      debug.enabled && console.log('New stats', newStats)
+
+      chrome.storage.sync.set(newStats);
+    });
   }
 }
 
@@ -130,7 +143,6 @@ function InitMainObserver() {
 
   function CreateMainObserver() {
     let targetYtdComments = document.querySelector(selectors.root);
-    console.log(targetYtdComments);
     if (targetYtdComments) {
       // Create the comment section observer
       observer = new MutationObserver(HandleMutation);
