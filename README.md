@@ -1,5 +1,6 @@
 # YouTube Comments Filter
-This is a Google Chrome extenstion for filtering out certain YouTube comments based on user preferences
+This is a Google Chrome extenstion for filtering out certain YouTube comments based on user preferences.
+Current only supported for Google Chrome, but I'll try to make it work for other browers like Firefox.
 
 ![Preview](/media/repo_preview.png)
 
@@ -11,5 +12,4 @@ This is a Google Chrome extenstion for filtering out certain YouTube comments ba
 5. Configure your filters by going into the extension options or by just clicking on the extension icon in the toolbar
 
 ## Example:
-
 If you want to remove every comment that includes the word "potato", make a new line and simply just write potato.
