@@ -18,4 +18,4 @@ Tested on Google Chrome, Microsoft Edge and Mozilla Firefox.
 Install the addon on the official [Firefox Addons page](https://addons.mozilla.org/en-GB/firefox/addon/yt-comments-filter/) (NOTE: Addon is currently awaiting approval). 
 
 # Example:
-If you want to remove every comment that includes the word "potato", make a new line and simply just write potato.
+If you want to remove every comment that includes the word "potato", simply write "potato" in a new line
